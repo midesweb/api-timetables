@@ -22,7 +22,10 @@ class RegisterTest extends TestCase
         ]);
 
         $response->assertCreated()
-                 ->assertJsonStructure(['user', 'token']);
+                 ->assertJsonStructure([
+                    'message',
+                    'data' => ['user', 'token']
+                ]);
     }
 
     #[Test]
@@ -31,6 +34,10 @@ class RegisterTest extends TestCase
         $response = $this->postJson('/api/register', []);
 
         $response->assertStatus(422)
-                 ->assertJsonValidationErrors(['name', 'email', 'password']);
+                ->assertJsonStructure([
+                    'message',
+                    'errors'
+                ])
+                ->assertJsonValidationErrors(['name', 'email', 'password']);
     }
 }

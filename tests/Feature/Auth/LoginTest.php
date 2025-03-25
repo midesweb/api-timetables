@@ -27,7 +27,10 @@ class LoginTest extends TestCase
         ]);
 
         $response->assertOk()
-                 ->assertJsonStructure(['user', 'token']);
+                 ->assertJsonStructure([
+                    'message',
+                    'data' => ['user', 'token']
+                ]);
     }
 
     #[Test]
@@ -39,6 +42,10 @@ class LoginTest extends TestCase
         ]);
 
         $response->assertStatus(422)
-                 ->assertJsonValidationErrors(['email']);
+                ->assertJsonStructure([
+                    'message',
+                    'errors'
+                ])
+                ->assertJsonValidationErrors(['email']);
     }
 }

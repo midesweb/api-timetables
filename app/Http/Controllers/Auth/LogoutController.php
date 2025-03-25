@@ -4,16 +4,16 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Lib\ApiFeedbackSender;
 
 class LogoutController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     */
+    use ApiFeedbackSender;
+
     public function __invoke(Request $request)
     {
         $request->user()->tokens()->delete();
 
-        return response()->json(['message' => 'Sesión cerrada']);
+        return $this->sendSuccess('Sesión cerrada');
     }
 }

@@ -7,12 +7,12 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+use App\Lib\ApiFeedbackSender;
 
 class LoginController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     */
+    use ApiFeedbackSender;
+
     public function __invoke(Request $request)
     {
         $user = User::where('email', $request->email)->first();
@@ -25,9 +25,10 @@ class LoginController extends Controller
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
-        return response()->json([
+        return $this->sendSuccess('Inicio de sesión exitoso', [
             'user'  => $user,
             'token' => $token,
         ]);
     }
 }
+

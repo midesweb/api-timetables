@@ -21,7 +21,14 @@ class GetUserTest extends TestCase
         $response = $this->getJson('/api/user');
 
         $response->assertOk()
-                 ->assertJson(['id' => $user->id, 'email' => $user->email]);
+                ->assertJsonStructure([
+                    'message',
+                    'data'
+                ])
+                ->assertJson([
+                    'message' => 'Usuario encontrado',
+                    'data' => [ 'id' => $user->id, 'email' => $user->email ],
+                ]);
     }
 
     #[Test]

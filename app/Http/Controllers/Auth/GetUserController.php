@@ -4,14 +4,14 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Lib\ApiFeedbackSender;
 
 class GetUserController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     */
+    use ApiFeedbackSender;
+
     public function __invoke(Request $request)
     {
-        return response()->json($request->user());
+        return $this->sendSuccess('Usuario encontrado', $request->user());
     }
 }

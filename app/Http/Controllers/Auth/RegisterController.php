@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Lib\ApiFeedbackSender;
 
 class RegisterController extends Controller
 {
+    use ApiFeedbackSender;
+
     /**
      * Handle the incoming request.
      */
@@ -27,7 +30,7 @@ class RegisterController extends Controller
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
-        return response()->json([
+        return $this->sendSuccess('Registro exitoso', [
             'user'  => $user,
             'token' => $token,
         ], 201);
