@@ -30,11 +30,16 @@ class CreateTimetableTest extends TestCase
         $response->assertJson(fn (AssertableJson $json) =>
             $json->where('message', 'Horario creado correctamente')
                  ->has('data.id')
+                 ->has('data.user_id')
                  ->where('data.name', $payload['name'])
                  ->where('data.description', $payload['description'])
         );
 
-        $this->assertDatabaseHas('timetables', $payload);
+        $this->assertDatabaseHas('timetables', [
+            'name' => $payload['name'],
+            'description' => $payload['description'],
+            'user_id' => $user->id,
+        ]);
     }
 
     #[Test]
@@ -76,4 +81,18 @@ class CreateTimetableTest extends TestCase
         $response->assertStatus(422);
         $response->assertJsonValidationErrors(['description', 'name']);
     }
+
+    #[Test]
+    public function guest_cannot_create_timetable()
+    {
+        $payload = [
+            'name' => 'Horario de prueba',
+            'description' => 'Horario sin usuario autenticado',
+        ];
+
+        $response = $this->postJson('/api/timetables', $payload);
+
+        $response->assertUnauthorized();
+    }
+
 }

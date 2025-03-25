@@ -18,7 +18,7 @@ class CreateTimetableController extends Controller
             'description' => 'required|string|max:300',
         ]);
 
-        $timetable = Timetable::create($validated);
+        $timetable = $request->user()->timetables()->create($validated);
 
         return $this->sendSuccess('Horario creado correctamente', $timetable, 201);
     }
