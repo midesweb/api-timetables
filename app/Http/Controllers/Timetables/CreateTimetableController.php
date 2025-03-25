@@ -18,6 +18,10 @@ class CreateTimetableController extends Controller
             'description' => 'required|string|max:300',
         ]);
 
+        if ($request->user()->cannot('create', Timetable::class)) {
+            return $this->sendError('No tienes permiso para crear horarios', [], 403);
+        }
+
         $timetable = $request->user()->timetables()->create($validated);
 
         return $this->sendSuccess('Horario creado correctamente', $timetable, 201);
