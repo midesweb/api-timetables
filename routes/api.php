@@ -9,6 +9,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Timetables\ShowTimetableController;
 use App\Http\Controllers\Timetables\ListTimetablesController;
 use App\Http\Controllers\Timetables\CreateTimetableController;
+use App\Http\Controllers\Timetables\DeleteTimetableController;
 use App\Http\Controllers\Timetables\UpdateTimetableController;
 
 Route::post('/register', RegisterController::class);
@@ -19,7 +20,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/logout', LogoutController::class);
 });
 
-Route::middleware('auth:sanctum')->post('/timetables', CreateTimetableController::class);
-Route::middleware('auth:sanctum')->get('/timetables/{timetable}', ShowTimetableController::class);
-Route::middleware('auth:sanctum')->get('/timetables', ListTimetablesController::class);
-Route::middleware('auth:sanctum')->put('/timetables/{timetable}', UpdateTimetableController::class);
+Route::prefix('timetables')->middleware('auth:sanctum')->group(function () {
+    Route::get('/', ListTimetablesController::class);
+    Route::get('/{timetable}', ShowTimetableController::class);
+    Route::post('/', CreateTimetableController::class);
+    Route::put('/{timetable}', UpdateTimetableController::class);
+    Route::delete('/{timetable}', DeleteTimetableController::class);
+});
