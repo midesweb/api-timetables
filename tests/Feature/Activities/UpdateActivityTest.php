@@ -105,4 +105,34 @@ class UpdateActivityTest extends TestCase
             'is_available',
         ]);
     }
+
+    #[Test]
+public function cannot_update_activity_if_timetable_does_not_match(): void
+{
+    $user = User::factory()->create();
+
+    $timetableA = \App\Models\Timetable::factory()->for($user)->create();
+    $timetableB = \App\Models\Timetable::factory()->for($user)->create();
+
+    $activity = Activity::factory()->for($timetableA)->create([
+        'info' => 'Clase original',
+    ]);
+
+    $response = $this
+        ->actingAs($user)
+        ->putJson("/api/timetables/{$timetableB->id}/activities/{$activity->id}", [
+            'info' => 'Intento de actualización con timetable incorrecto',
+            'day' => 3,
+            'start_time' => '00:03',
+            'duration' => 10,
+            'is_available' => false,
+        ]);
+
+    $response->dump();
+    $response->assertNotFound();
+    $response->assertJsonFragment([
+        'message' => 'La actividad no pertenece a este horario',
+    ]);
+}
+
 }
