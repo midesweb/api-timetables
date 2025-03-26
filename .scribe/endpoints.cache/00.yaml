@@ -228,7 +228,7 @@ endpoints:
       authenticated: true
       custom: []
     headers:
-      Authorization: '{YOUR_AUTH_KEY}'
+      Authorization: 'Bearer {Escribe aquí tu token}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -282,7 +282,7 @@ endpoints:
       authenticated: true
       custom: []
     headers:
-      Authorization: '{YOUR_AUTH_KEY}'
+      Authorization: 'Bearer {Escribe aquí tu token}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []

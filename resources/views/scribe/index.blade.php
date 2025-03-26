@@ -26,7 +26,7 @@
             </style>
 
     <script>
-        var tryItOutBaseUrl = "http://example.com";
+        var tryItOutBaseUrl = "http://localhost";
         var useCsrf = Boolean();
         var csrfUrl = "/sanctum/csrf-cookie";
     </script>
@@ -147,13 +147,13 @@
     <div class="content">
         <h1 id="introduction">Introduction</h1>
 <aside>
-    <strong>Base URL</strong>: <code>http://example.com</code>
+    <strong>Base URL</strong>: <code>http://localhost</code>
 </aside>
 <pre><code>Esta es la documentación del
 API de la creación de horarios.</code></pre>
 
         <h1 id="authenticating-requests">Authenticating requests</h1>
-<p>To authenticate requests, include a <strong><code>Authorization</code></strong> header with the value <strong><code>"{YOUR_AUTH_KEY}"</code></strong>.</p>
+<p>To authenticate requests, include a <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {Escribe aquí tu token}"</code></strong>.</p>
 <p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
 <p>You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.</p>
 
@@ -176,19 +176,19 @@ API de la creación de horarios.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://example.com/api/timetables/1/activities" \
-    --header "Authorization: {YOUR_AUTH_KEY}" \
+    --get "http://localhost/api/timetables/1/activities" \
+    --header "Authorization: Bearer {Escribe aquí tu token}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://example.com/api/timetables/1/activities"
+    "http://localhost/api/timetables/1/activities"
 );
 
 const headers = {
-    "Authorization": "{YOUR_AUTH_KEY}",
+    "Authorization": "Bearer {Escribe aquí tu token}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -289,10 +289,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="Authorization" class="auth-value"               data-endpoint="GETapi-timetables--timetable_id--activities"
-               value="{YOUR_AUTH_KEY}"
+               value="Bearer {Escribe aquí tu token}"
                data-component="header">
     <br>
-<p>Example: <code>{YOUR_AUTH_KEY}</code></p>
+<p>Example: <code>Bearer {Escribe aquí tu token}</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -344,8 +344,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://example.com/api/timetables/1/activities" \
-    --header "Authorization: {YOUR_AUTH_KEY}" \
+    "http://localhost/api/timetables/1/activities" \
+    --header "Authorization: Bearer {Escribe aquí tu token}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -360,11 +360,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://example.com/api/timetables/1/activities"
+    "http://localhost/api/timetables/1/activities"
 );
 
 const headers = {
-    "Authorization": "{YOUR_AUTH_KEY}",
+    "Authorization": "Bearer {Escribe aquí tu token}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -479,10 +479,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="Authorization" class="auth-value"               data-endpoint="POSTapi-timetables--timetable_id--activities"
-               value="{YOUR_AUTH_KEY}"
+               value="Bearer {Escribe aquí tu token}"
                data-component="header">
     <br>
-<p>Example: <code>{YOUR_AUTH_KEY}</code></p>
+<p>Example: <code>Bearer {Escribe aquí tu token}</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -600,19 +600,19 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://example.com/api/timetables/1/activities/3" \
-    --header "Authorization: {YOUR_AUTH_KEY}" \
+    --get "http://localhost/api/timetables/1/activities/3" \
+    --header "Authorization: Bearer {Escribe aquí tu token}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://example.com/api/timetables/1/activities/3"
+    "http://localhost/api/timetables/1/activities/3"
 );
 
 const headers = {
-    "Authorization": "{YOUR_AUTH_KEY}",
+    "Authorization": "Bearer {Escribe aquí tu token}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -721,10 +721,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="Authorization" class="auth-value"               data-endpoint="GETapi-timetables--timetable_id--activities--activity_id-"
-               value="{YOUR_AUTH_KEY}"
+               value="Bearer {Escribe aquí tu token}"
                data-component="header">
     <br>
-<p>Example: <code>{YOUR_AUTH_KEY}</code></p>
+<p>Example: <code>Bearer {Escribe aquí tu token}</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -787,8 +787,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://example.com/api/timetables/1/activities/4" \
-    --header "Authorization: {YOUR_AUTH_KEY}" \
+    "http://localhost/api/timetables/1/activities/4" \
+    --header "Authorization: Bearer {Escribe aquí tu token}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -803,11 +803,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://example.com/api/timetables/1/activities/4"
+    "http://localhost/api/timetables/1/activities/4"
 );
 
 const headers = {
-    "Authorization": "{YOUR_AUTH_KEY}",
+    "Authorization": "Bearer {Escribe aquí tu token}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -927,10 +927,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="Authorization" class="auth-value"               data-endpoint="PUTapi-timetables--timetable_id--activities--activity_id-"
-               value="{YOUR_AUTH_KEY}"
+               value="Bearer {Escribe aquí tu token}"
                data-component="header">
     <br>
-<p>Example: <code>{YOUR_AUTH_KEY}</code></p>
+<p>Example: <code>Bearer {Escribe aquí tu token}</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -1059,19 +1059,19 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://example.com/api/timetables/1/activities/4" \
-    --header "Authorization: {YOUR_AUTH_KEY}" \
+    "http://localhost/api/timetables/1/activities/4" \
+    --header "Authorization: Bearer {Escribe aquí tu token}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://example.com/api/timetables/1/activities/4"
+    "http://localhost/api/timetables/1/activities/4"
 );
 
 const headers = {
-    "Authorization": "{YOUR_AUTH_KEY}",
+    "Authorization": "Bearer {Escribe aquí tu token}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -1168,10 +1168,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="Authorization" class="auth-value"               data-endpoint="DELETEapi-timetables--timetable_id--activities--activity_id-"
-               value="{YOUR_AUTH_KEY}"
+               value="Bearer {Escribe aquí tu token}"
                data-component="header">
     <br>
-<p>Example: <code>{YOUR_AUTH_KEY}</code></p>
+<p>Example: <code>Bearer {Escribe aquí tu token}</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -1239,7 +1239,7 @@ Devuelve el usuario creado junto con un token de autenticación.</p>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://example.com/api/register" \
+    "http://localhost/api/register" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -1253,7 +1253,7 @@ Devuelve el usuario creado junto con un token de autenticación.</p>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://example.com/api/register"
+    "http://localhost/api/register"
 );
 
 const headers = {
@@ -1440,7 +1440,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://example.com/api/login" \
+    "http://localhost/api/login" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -1452,7 +1452,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://example.com/api/login"
+    "http://localhost/api/login"
 );
 
 const headers = {
@@ -1616,19 +1616,19 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://example.com/api/user" \
-    --header "Authorization: {YOUR_AUTH_KEY}" \
+    --get "http://localhost/api/user" \
+    --header "Authorization: Bearer {Escribe aquí tu token}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://example.com/api/user"
+    "http://localhost/api/user"
 );
 
 const headers = {
-    "Authorization": "{YOUR_AUTH_KEY}",
+    "Authorization": "Bearer {Escribe aquí tu token}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -1711,10 +1711,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="Authorization" class="auth-value"               data-endpoint="GETapi-user"
-               value="{YOUR_AUTH_KEY}"
+               value="Bearer {Escribe aquí tu token}"
                data-component="header">
     <br>
-<p>Example: <code>{YOUR_AUTH_KEY}</code></p>
+<p>Example: <code>Bearer {Escribe aquí tu token}</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -1754,19 +1754,19 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://example.com/api/logout" \
-    --header "Authorization: {YOUR_AUTH_KEY}" \
+    "http://localhost/api/logout" \
+    --header "Authorization: Bearer {Escribe aquí tu token}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://example.com/api/logout"
+    "http://localhost/api/logout"
 );
 
 const headers = {
-    "Authorization": "{YOUR_AUTH_KEY}",
+    "Authorization": "Bearer {Escribe aquí tu token}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -1843,10 +1843,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="Authorization" class="auth-value"               data-endpoint="POSTapi-logout"
-               value="{YOUR_AUTH_KEY}"
+               value="Bearer {Escribe aquí tu token}"
                data-component="header">
     <br>
-<p>Example: <code>{YOUR_AUTH_KEY}</code></p>
+<p>Example: <code>Bearer {Escribe aquí tu token}</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -1891,19 +1891,19 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://example.com/api/timetables" \
-    --header "Authorization: {YOUR_AUTH_KEY}" \
+    --get "http://localhost/api/timetables" \
+    --header "Authorization: Bearer {Escribe aquí tu token}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://example.com/api/timetables"
+    "http://localhost/api/timetables"
 );
 
 const headers = {
-    "Authorization": "{YOUR_AUTH_KEY}",
+    "Authorization": "Bearer {Escribe aquí tu token}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -1997,10 +1997,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="Authorization" class="auth-value"               data-endpoint="GETapi-timetables"
-               value="{YOUR_AUTH_KEY}"
+               value="Bearer {Escribe aquí tu token}"
                data-component="header">
     <br>
-<p>Example: <code>{YOUR_AUTH_KEY}</code></p>
+<p>Example: <code>Bearer {Escribe aquí tu token}</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -2040,19 +2040,19 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://example.com/api/timetables/1" \
-    --header "Authorization: {YOUR_AUTH_KEY}" \
+    --get "http://localhost/api/timetables/1" \
+    --header "Authorization: Bearer {Escribe aquí tu token}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://example.com/api/timetables/1"
+    "http://localhost/api/timetables/1"
 );
 
 const headers = {
-    "Authorization": "{YOUR_AUTH_KEY}",
+    "Authorization": "Bearer {Escribe aquí tu token}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -2164,10 +2164,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="Authorization" class="auth-value"               data-endpoint="GETapi-timetables--timetable_id-"
-               value="{YOUR_AUTH_KEY}"
+               value="Bearer {Escribe aquí tu token}"
                data-component="header">
     <br>
-<p>Example: <code>{YOUR_AUTH_KEY}</code></p>
+<p>Example: <code>Bearer {Escribe aquí tu token}</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -2219,8 +2219,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://example.com/api/timetables" \
-    --header "Authorization: {YOUR_AUTH_KEY}" \
+    "http://localhost/api/timetables" \
+    --header "Authorization: Bearer {Escribe aquí tu token}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -2232,11 +2232,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://example.com/api/timetables"
+    "http://localhost/api/timetables"
 );
 
 const headers = {
-    "Authorization": "{YOUR_AUTH_KEY}",
+    "Authorization": "Bearer {Escribe aquí tu token}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -2353,10 +2353,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="Authorization" class="auth-value"               data-endpoint="POSTapi-timetables"
-               value="{YOUR_AUTH_KEY}"
+               value="Bearer {Escribe aquí tu token}"
                data-component="header">
     <br>
-<p>Example: <code>{YOUR_AUTH_KEY}</code></p>
+<p>Example: <code>Bearer {Escribe aquí tu token}</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -2419,8 +2419,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://example.com/api/timetables/1" \
-    --header "Authorization: {YOUR_AUTH_KEY}" \
+    "http://localhost/api/timetables/1" \
+    --header "Authorization: Bearer {Escribe aquí tu token}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -2432,11 +2432,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://example.com/api/timetables/1"
+    "http://localhost/api/timetables/1"
 );
 
 const headers = {
-    "Authorization": "{YOUR_AUTH_KEY}",
+    "Authorization": "Bearer {Escribe aquí tu token}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -2550,10 +2550,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="Authorization" class="auth-value"               data-endpoint="PUTapi-timetables--timetable_id-"
-               value="{YOUR_AUTH_KEY}"
+               value="Bearer {Escribe aquí tu token}"
                data-component="header">
     <br>
-<p>Example: <code>{YOUR_AUTH_KEY}</code></p>
+<p>Example: <code>Bearer {Escribe aquí tu token}</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
@@ -2628,19 +2628,19 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://example.com/api/timetables/1" \
-    --header "Authorization: {YOUR_AUTH_KEY}" \
+    "http://localhost/api/timetables/1" \
+    --header "Authorization: Bearer {Escribe aquí tu token}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://example.com/api/timetables/1"
+    "http://localhost/api/timetables/1"
 );
 
 const headers = {
-    "Authorization": "{YOUR_AUTH_KEY}",
+    "Authorization": "Bearer {Escribe aquí tu token}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -2737,10 +2737,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="Authorization" class="auth-value"               data-endpoint="DELETEapi-timetables--timetable_id-"
-               value="{YOUR_AUTH_KEY}"
+               value="Bearer {Escribe aquí tu token}"
                data-component="header">
     <br>
-<p>Example: <code>{YOUR_AUTH_KEY}</code></p>
+<p>Example: <code>Bearer {Escribe aquí tu token}</code></p>
             </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;

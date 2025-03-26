@@ -3,7 +3,7 @@
 
 
 <aside>
-    <strong>Base URL</strong>: <code>http://example.com</code>
+    <strong>Base URL</strong>: <code>http://localhost</code>
 </aside>
 
     Esta es la documentación del
