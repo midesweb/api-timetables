@@ -20,7 +20,6 @@ class CreateActivityTest extends TestCase
         $timetable = Timetable::factory()->for($user)->create();
 
         $payload = [
-            'timetable_id' => $timetable->id,
             'day' => 2,
             'start_time' => '10:30',
             'duration' => 90,
@@ -60,7 +59,6 @@ class CreateActivityTest extends TestCase
         $timetable = Timetable::factory()->for($owner)->create();
 
         $payload = [
-            'timetable_id' => $timetable->id,
             'day' => 3,
             'start_time' => '14:00',
             'duration' => 60,
