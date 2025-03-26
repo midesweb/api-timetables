@@ -31,6 +31,6 @@ Route::prefix('timetables')->middleware('auth:sanctum')->group(function () {
     Route::delete('/{timetable}', DeleteTimetableController::class);
 });
 
-Route::middleware('auth:sanctum')->post('/activities', CreateActivityController::class);
-Route::middleware('auth:sanctum')->get('/activities/{id}', ShowActivityController::class);
-Route::middleware('auth:sanctum')->put('/activities/{id}', UpdateActivityController::class);
+Route::middleware('auth:sanctum')->post('/timetables/{timetable}/activities', CreateActivityController::class);
+Route::middleware('auth:sanctum')->get('/activities/{activity}', ShowActivityController::class);
+Route::middleware('auth:sanctum')->put('/activities/{activity}', UpdateActivityController::class);

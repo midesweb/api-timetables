@@ -74,7 +74,7 @@ class UpdateActivityTest extends TestCase
 
         $response->assertForbidden();
         $response->assertJsonFragment([
-            'message' => 'No tienes permiso para modificar esta actividad',
+            'message' => 'No tienes permiso para modificar este horario',
         ]);
     }
 

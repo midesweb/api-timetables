@@ -30,7 +30,7 @@ class CreateActivityTest extends TestCase
 
         $response = $this
             ->actingAs($user)
-            ->postJson('/api/activities', $payload);
+            ->postJson("/api/timetables/{$timetable->id}/activities", $payload);
 
         $response->assertCreated();
         $response->assertJsonFragment([
@@ -43,7 +43,10 @@ class CreateActivityTest extends TestCase
     #[Test]
     public function guest_cannot_create_an_activity(): void
     {
-        $response = $this->postJson('/api/activities', []);
+        $user = User::factory()->create();
+        $timetable = Timetable::factory()->for($user)->create();
+
+        $response = $this->postJson("/api/timetables/{$timetable->id}/activities", []);
 
         $response->assertUnauthorized();
     }
@@ -67,7 +70,7 @@ class CreateActivityTest extends TestCase
 
         $response = $this
             ->actingAs($intruder)
-            ->postJson('/api/activities', $payload);
+            ->postJson("/api/timetables/{$timetable->id}/activities", $payload);
 
         $response->assertForbidden();
         $response->assertJsonFragment([
@@ -79,11 +82,11 @@ class CreateActivityTest extends TestCase
     public function timetable_id_is_required_and_must_exist(): void
     {
         $user = User::factory()->create();
+        $timetable = Timetable::factory()->for($user)->create();
 
         $response = $this
             ->actingAs($user)
-            ->postJson('/api/activities', [
-                // falta 'timetable_id'
+            ->postJson("/api/timetables/{$timetable->id}/activities", [
                 'day' => 8,
                 'start_time' => '09:00',
                 'duration' => 0,
@@ -92,20 +95,6 @@ class CreateActivityTest extends TestCase
             ]);
 
         $response->assertStatus(422);
-        $response->assertJsonValidationErrors(['timetable_id', 'day', 'duration']);
-
-        // ahora con un ID inexistente
-        $response = $this
-            ->actingAs($user)
-            ->postJson('/api/activities', [
-                'timetable_id' => 9999, // no existe
-                'day' => 1,
-                'start_time' => '09:00',
-                'duration' => 60,
-                'info' => 'Clase'
-            ]);
-
-        $response->assertStatus(422);
-        $response->assertJsonValidationErrors(['timetable_id']);
+        $response->assertJsonValidationErrors(['day', 'duration']);
     }
 }
