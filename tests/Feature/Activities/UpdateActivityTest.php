@@ -21,10 +21,11 @@ class UpdateActivityTest extends TestCase
             'info' => 'Original',
             'day' => 1,
         ]);
+        $timetable = $activity->timetable;
 
         $response = $this
             ->actingAs($user)
-            ->putJson("/api/activities/{$activity->id}", [
+            ->putJson("/api/timetables/{$timetable->id}/activities/{$activity->id}", [
                 'info' => 'Actualizado',
                 'day' => 3,
                 'start_time' => $activity->start_time,
@@ -52,8 +53,9 @@ class UpdateActivityTest extends TestCase
     public function guest_cannot_update_an_activity(): void
     {
         $activity = Activity::factory()->create();
+        $timetable = $activity->timetable;
 
-        $response = $this->putJson("/api/activities/{$activity->id}", []);
+        $response = $this->putJson("/api/timetables/{$timetable->id}/activities/{$activity->id}", []);
 
         $response->assertUnauthorized();
     }
@@ -65,10 +67,11 @@ class UpdateActivityTest extends TestCase
         $intruder = User::factory()->create();
 
         $activity = Activity::factory()->forUser($owner)->create();
+        $timetable = $activity->timetable;
 
         $response = $this
             ->actingAs($intruder)
-            ->putJson("/api/activities/{$activity->id}", [
+            ->putJson("/api/timetables/{$timetable->id}/activities/{$activity->id}", [
                 'info' => 'No deberías poder hacer esto',
             ]);
 
@@ -81,13 +84,13 @@ class UpdateActivityTest extends TestCase
     #[Test]
     public function update_activity_fails_with_invalid_data(): void
     {
-        $user = \App\Models\User::factory()->create();
-
-        $activity = \App\Models\Activity::factory()->forUser($user)->create();
+        $user = User::factory()->create();
+        $activity = Activity::factory()->forUser($user)->create();
+        $timetable = $activity->timetable;
 
         $response = $this
             ->actingAs($user)
-            ->putJson("/api/activities/{$activity->id}", [
+            ->putJson("/api/timetables/{$timetable->id}/activities/{$activity->id}", [
                 'day' => 0,
                 'start_time' => '99:99',
                 'duration' => -50,
@@ -102,5 +105,4 @@ class UpdateActivityTest extends TestCase
             'is_available',
         ]);
     }
-
 }

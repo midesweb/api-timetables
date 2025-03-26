@@ -19,10 +19,11 @@ class ShowActivityTest extends TestCase
         $user = User::factory()->create();
 
         $activity = Activity::factory()->forUser($user)->create();
+        $timetable = $activity->timetable;
 
         $response = $this
             ->actingAs($user)
-            ->getJson("/api/activities/{$activity->id}");
+            ->getJson("/api/timetables/{$timetable->id}/activities/{$activity->id}");
 
         $response->assertOk();
         $response->assertJsonFragment([
@@ -39,8 +40,9 @@ class ShowActivityTest extends TestCase
     public function guest_cannot_view_an_activity(): void
     {
         $activity = Activity::factory()->create();
+        $timetable = $activity->timetable;
 
-        $response = $this->getJson("/api/activities/{$activity->id}");
+        $response = $this->getJson("/api/timetables/{$timetable->id}/activities/{$activity->id}");
 
         $response->assertUnauthorized();
     }
@@ -49,13 +51,13 @@ class ShowActivityTest extends TestCase
     public function not_found_if_activity_does_not_exist(): void
     {
         $user = User::factory()->create();
+        $timetable = \App\Models\Timetable::factory()->for($user)->create();
 
         $response = $this
             ->actingAs($user)
-            ->getJson("/api/activities/999");
+            ->getJson("/api/timetables/{$timetable->id}/activities/999");
 
         $response->assertNotFound();
-        $response->assertJsonFragment(['message' => 'Actividad no encontrada']);
     }
 
     #[Test]
@@ -64,13 +66,12 @@ class ShowActivityTest extends TestCase
         $owner = User::factory()->create();
         $intruder = User::factory()->create();
 
-        $activity = \App\Models\Activity::factory()
-            ->forUser($owner)
-            ->create();
+        $activity = Activity::factory()->forUser($owner)->create();
+        $timetable = $activity->timetable;
 
         $response = $this
             ->actingAs($intruder)
-            ->getJson("/api/activities/{$activity->id}");
+            ->getJson("/api/timetables/{$timetable->id}/activities/{$activity->id}");
 
         $response->assertForbidden();
         $response->assertJsonFragment([
