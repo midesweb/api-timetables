@@ -66,24 +66,31 @@
                     <a href="#authenticating-requests">Authenticating requests</a>
                 </li>
                             </ul>
+                    <ul id="tocify-header-autenticacion" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="autenticacion">
+                    <a href="#autenticacion">Autenticación</a>
+                </li>
+                                    <ul id="tocify-subheader-autenticacion" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="autenticacion-POSTapi-register">
+                                <a href="#autenticacion-POSTapi-register">Registrar un nuevo usuario</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="autenticacion-POSTapi-login">
+                                <a href="#autenticacion-POSTapi-login">Iniciar sesión</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="autenticacion-GETapi-user">
+                                <a href="#autenticacion-GETapi-user">Obtener usuario autenticado</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="autenticacion-POSTapi-logout">
+                                <a href="#autenticacion-POSTapi-logout">Cerrar sesión</a>
+                            </li>
+                                                                        </ul>
+                            </ul>
                     <ul id="tocify-header-endpoints" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="endpoints">
                     <a href="#endpoints">Endpoints</a>
                 </li>
                                     <ul id="tocify-subheader-endpoints" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="endpoints-POSTapi-register">
-                                <a href="#endpoints-POSTapi-register">Handle the incoming request.</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-login">
-                                <a href="#endpoints-POSTapi-login">POST api/login</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-user">
-                                <a href="#endpoints-GETapi-user">GET api/user</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-POSTapi-logout">
-                                <a href="#endpoints-POSTapi-logout">POST api/logout</a>
-                            </li>
-                                                                                <li class="tocify-item level-2" data-unique="endpoints-GETapi-timetables">
+                                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-timetables">
                                 <a href="#endpoints-GETapi-timetables">GET api/timetables</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-timetables--timetable_id-">
@@ -143,11 +150,13 @@ You can switch the language used with the tabs at the top right (or from the nav
         <h1 id="authenticating-requests">Authenticating requests</h1>
 <p>This API is not authenticated.</p>
 
-        <h1 id="endpoints">Endpoints</h1>
+        <h1 id="autenticacion">Autenticación</h1>
 
-    
+    <p>Registro de nuevo usuario</p>
+<p>Este endpoint permite registrar un nuevo usuario en el sistema.
+Devuelve el usuario creado junto con un token de autenticación.</p>
 
-                                <h2 id="endpoints-POSTapi-register">Handle the incoming request.</h2>
+                                <h2 id="autenticacion-POSTapi-register">Registrar un nuevo usuario</h2>
 
 <p>
 </p>
@@ -164,9 +173,10 @@ You can switch the language used with the tabs at the top right (or from the nav
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"b\",
-    \"email\": \"zbailey@example.net\",
-    \"password\": \"-0pBNvYgxw\"
+    \"name\": \"Juan Pérez\",
+    \"email\": \"juan@example.com\",
+    \"password\": \"secret123\",
+    \"password_confirmation\": \"secret123\"
 }"
 </code></pre></div>
 
@@ -182,9 +192,10 @@ const headers = {
 };
 
 let body = {
-    "name": "b",
-    "email": "zbailey@example.net",
-    "password": "-0pBNvYgxw"
+    "name": "Juan Pérez",
+    "email": "juan@example.com",
+    "password": "secret123",
+    "password_confirmation": "secret123"
 };
 
 fetch(url, {
@@ -196,7 +207,40 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-register">
-</span>
+            <blockquote>
+            <p>Example response (201):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Registro exitoso&quot;,
+    &quot;data&quot;: {
+        &quot;user&quot;: {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Juan P&eacute;rez&quot;,
+            &quot;email&quot;: &quot;juan@example.com&quot;,
+            &quot;created_at&quot;: &quot;2025-03-26T12:00:00.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-03-26T12:00:00.000000Z&quot;
+        },
+        &quot;token&quot;: &quot;1|aBcD123xyz...&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;The given data was invalid.&quot;,
+    &quot;errors&quot;: {
+        &quot;email&quot;: [
+            &quot;The email has already been taken.&quot;
+        ]
+    }
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-register" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-register"></span>:
@@ -273,10 +317,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="POSTapi-register"
-               value="b"
+               value="Juan Pérez"
                data-component="body">
     <br>
-<p>Must not be greater than 255 characters. Example: <code>b</code></p>
+<p>Nombre del usuario. Example: <code>Juan Pérez</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
@@ -284,10 +328,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi-register"
-               value="zbailey@example.net"
+               value="juan@example.com"
                data-component="body">
     <br>
-<p>Must be a valid email address. Example: <code>zbailey@example.net</code></p>
+<p>Correo electrónico único. Example: <code>juan@example.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -295,14 +339,25 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="POSTapi-register"
-               value="-0pBNvYgxw"
+               value="secret123"
                data-component="body">
     <br>
-<p>Must be at least 8 characters. Example: <code>-0pBNvYgxw</code></p>
+<p>Mínimo 8 caracteres. Debe incluir confirmation. Example: <code>secret123</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>password_confirmation</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="password_confirmation"                data-endpoint="POSTapi-register"
+               value="secret123"
+               data-component="body">
+    <br>
+<p>Confirmación de contraseña. Debe coincidir con <code>password</code>. Example: <code>secret123</code></p>
         </div>
         </form>
 
-                    <h2 id="endpoints-POSTapi-login">POST api/login</h2>
+                    <h2 id="autenticacion-POSTapi-login">Iniciar sesión</h2>
 
 <p>
 </p>
@@ -317,7 +372,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <pre><code class="language-bash">curl --request POST \
     "http://localhost/api/login" \
     --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
+    --header "Accept: application/json" \
+    --data "{
+    \"email\": \"juan@example.com\",
+    \"password\": \"secret123\"
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
@@ -330,15 +390,54 @@ const headers = {
     "Accept": "application/json",
 };
 
+let body = {
+    "email": "juan@example.com",
+    "password": "secret123"
+};
+
 fetch(url, {
     method: "POST",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
 
 <span id="example-responses-POSTapi-login">
-</span>
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Inicio de sesi&oacute;n exitoso&quot;,
+    &quot;data&quot;: {
+        &quot;user&quot;: {
+            &quot;id&quot;: 1,
+            &quot;name&quot;: &quot;Juan P&eacute;rez&quot;,
+            &quot;email&quot;: &quot;juan@example.com&quot;,
+            &quot;created_at&quot;: &quot;2025-03-26T12:00:00.000000Z&quot;,
+            &quot;updated_at&quot;: &quot;2025-03-26T12:00:00.000000Z&quot;
+        },
+        &quot;token&quot;: &quot;1|aBcD123xyz...&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (422):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;The given data was invalid.&quot;,
+    &quot;errors&quot;: {
+        &quot;email&quot;: [
+            &quot;Las credenciales son incorrectas.&quot;
+        ]
+    }
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-login" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-login"></span>:
@@ -408,14 +507,38 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Example: <code>application/json</code></p>
             </div>
-                        </form>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>email</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="email"                data-endpoint="POSTapi-login"
+               value="juan@example.com"
+               data-component="body">
+    <br>
+<p>Correo electrónico del usuario. Example: <code>juan@example.com</code></p>
+        </div>
+                <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="password"                data-endpoint="POSTapi-login"
+               value="secret123"
+               data-component="body">
+    <br>
+<p>Contraseña del usuario. Example: <code>secret123</code></p>
+        </div>
+        </form>
 
-                    <h2 id="endpoints-GETapi-user">GET api/user</h2>
+                    <h2 id="autenticacion-GETapi-user">Obtener usuario autenticado</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>Requiere autenticación con token Bearer.</p>
 
 <span id="example-requests-GETapi-user">
 <blockquote>Example request:</blockquote>
@@ -447,19 +570,19 @@ fetch(url, {
 
 <span id="example-responses-GETapi-user">
             <blockquote>
-            <p>Example response (401):</p>
+            <p>Example response (200):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;message&quot;: &quot;Usuario encontrado&quot;,
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;Juan P&eacute;rez&quot;,
+        &quot;email&quot;: &quot;juan@example.com&quot;,
+        &quot;created_at&quot;: &quot;2025-03-26T12:00:00.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2025-03-26T12:00:00.000000Z&quot;
+    }
 }</code>
  </pre>
     </span>
@@ -480,7 +603,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-GETapi-user" data-method="GET"
       data-path="api/user"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
@@ -534,12 +657,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="endpoints-POSTapi-logout">POST api/logout</h2>
+                    <h2 id="autenticacion-POSTapi-logout">Cerrar sesión</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>Requiere autenticación con token Bearer.</p>
 
 <span id="example-requests-POSTapi-logout">
 <blockquote>Example request:</blockquote>
@@ -570,7 +694,17 @@ fetch(url, {
 </span>
 
 <span id="example-responses-POSTapi-logout">
-</span>
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;message&quot;: &quot;Sesi&oacute;n cerrada&quot;,
+    &quot;data&quot;: []
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-logout" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-logout"></span>:
@@ -588,7 +722,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-logout" data-method="POST"
       data-path="api/logout"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
@@ -642,7 +776,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="endpoints-GETapi-timetables">GET api/timetables</h2>
+                <h1 id="endpoints">Endpoints</h1>
+
+    
+
+                                <h2 id="endpoints-GETapi-timetables">GET api/timetables</h2>
 
 <p>
 </p>
@@ -1472,10 +1610,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --data "{
     \"day\": 2,
-    \"start_time\": \"16:17\",
+    \"start_time\": \"16:24\",
     \"duration\": 22,
     \"info\": \"architecto\",
-    \"is_available\": false
+    \"is_available\": true
 }"
 </code></pre></div>
 
@@ -1492,10 +1630,10 @@ const headers = {
 
 let body = {
     "day": 2,
-    "start_time": "16:17",
+    "start_time": "16:24",
     "duration": 22,
     "info": "architecto",
-    "is_available": false
+    "is_available": true
 };
 
 fetch(url, {
@@ -1607,10 +1745,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="start_time"                data-endpoint="POSTapi-timetables--timetable_id--activities"
-               value="16:17"
+               value="16:24"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>H:i</code>. Example: <code>16:17</code></p>
+<p>Must be a valid date in the format <code>H:i</code>. Example: <code>16:24</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>duration</code></b>&nbsp;&nbsp;
@@ -1653,7 +1791,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <code>false</code>
         </label>
     <br>
-<p>Example: <code>false</code></p>
+<p>Example: <code>true</code></p>
         </div>
         </form>
 
@@ -1822,7 +1960,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Accept: application/json" \
     --data "{
     \"day\": 2,
-    \"start_time\": \"16:17\",
+    \"start_time\": \"16:24\",
     \"duration\": 22,
     \"info\": \"architecto\",
     \"is_available\": true
@@ -1842,7 +1980,7 @@ const headers = {
 
 let body = {
     "day": 2,
-    "start_time": "16:17",
+    "start_time": "16:24",
     "duration": 22,
     "info": "architecto",
     "is_available": true
@@ -1968,10 +2106,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="start_time"                data-endpoint="PUTapi-timetables--timetable_id--activities--activity_id-"
-               value="16:17"
+               value="16:24"
                data-component="body">
     <br>
-<p>Must be a valid date in the format <code>H:i</code>. Example: <code>16:17</code></p>
+<p>Must be a valid date in the format <code>H:i</code>. Example: <code>16:24</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>duration</code></b>&nbsp;&nbsp;
