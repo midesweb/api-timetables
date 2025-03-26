@@ -27,10 +27,10 @@ class UpdateActivityController extends Controller
      *
      * @authenticated
      *
-     * @urlParam timetable int required ID del horario al que pertenece la actividad. Example: 1
-     * @urlParam activity int required ID de la actividad a modificar. Example: 4
+     * @urlParam timetable_id int required ID del horario al que pertenece la actividad. Example: 1
+     * @urlParam activity_id int required ID de la actividad a modificar. Example: 4
      *
-     * @bodyParam day string Día de la semana. Example: Wednesday
+     * @bodyParam day int Día de la semana del 1 al 7, 1 para lunes. Example: 1
      * @bodyParam start_time string Hora de inicio (formato 24h). Example: 10:30
      * @bodyParam duration int Duración en minutos. Example: 90
      * @bodyParam info string Descripción o contenido de la actividad. Example: Tutoría personalizada

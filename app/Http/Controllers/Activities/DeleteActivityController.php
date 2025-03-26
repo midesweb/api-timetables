@@ -26,8 +26,8 @@ class DeleteActivityController extends Controller
      *
      * @authenticated
      *
-     * @urlParam timetable int required ID del horario al que pertenece la actividad. Example: 1
-     * @urlParam activity int required ID de la actividad a eliminar. Example: 4
+     * @urlParam timetable_id int required ID del horario al que pertenece la actividad. Example: 1
+     * @urlParam activity_id int required ID de la actividad a eliminar. Example: 4
      *
      * @response 200 {
      *   "message": "Actividad eliminada correctamente",

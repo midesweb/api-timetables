@@ -24,10 +24,9 @@ endpoints:
       subgroupDescription: ''
       title: 'Registrar un nuevo usuario'
       description: ''
-      authenticated: true
+      authenticated: false
       custom: []
     headers:
-      Authorization: '{YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -116,10 +115,7 @@ endpoints:
         description: ''
         custom: []
     responseFields: []
-    auth:
-      - headers
-      - Authorization
-      - 'Bearer 1|MamQIVVD8SLC0gYvjPXd5oBATwfXQL1eDTDeuPBW438393b6'
+    auth: []
     controller: null
     method: null
     route: null
@@ -140,10 +136,9 @@ endpoints:
       subgroupDescription: ''
       title: 'Iniciar sesión'
       description: ''
-      authenticated: true
+      authenticated: false
       custom: []
     headers:
-      Authorization: '{YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -210,10 +205,7 @@ endpoints:
         description: ''
         custom: []
     responseFields: []
-    auth:
-      - headers
-      - Authorization
-      - 'Bearer 1|MamQIVVD8SLC0gYvjPXd5oBATwfXQL1eDTDeuPBW438393b6'
+    auth: []
     controller: null
     method: null
     route: null

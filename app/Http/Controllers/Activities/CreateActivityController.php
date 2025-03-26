@@ -26,9 +26,7 @@ class CreateActivityController extends Controller
      *
      * @authenticated
      *
-     * @urlParam timetable int required ID del horario al que se le agregará la actividad. Example: 1
-     *
-     * @bodyParam day string required Día de la semana en formato ISO (ej. Monday, Tuesday). Example: Monday
+     * @bodyParam day int required Día de la semana del 1 al 7, siendo 1 el lunes. Example: 1
      * @bodyParam start_time string required Hora de inicio en formato HH:MM (24h). Example: 08:00
      * @bodyParam duration int required Duración en minutos. Example: 60
      * @bodyParam info string required Información o descripción de la actividad. Example: Clase de Matemáticas

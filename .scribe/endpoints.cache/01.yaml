@@ -98,25 +98,14 @@ endpoints:
         name: timetable_id
         description: 'The ID of the timetable.'
         required: true
-        example: 16
+        example: 1
         type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
-      timetable:
-        name: timetable
-        description: 'ID del horario que se desea consultar.'
-        required: true
-        example: 1
-        type: integer
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        custom: []
     cleanUrlParameters:
-      timetable_id: 16
-      timetable: 1
+      timetable_id: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -303,25 +292,14 @@ endpoints:
         name: timetable_id
         description: 'The ID of the timetable.'
         required: true
-        example: 16
+        example: 1
         type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
-      timetable:
-        name: timetable
-        description: 'ID del horario que se desea actualizar.'
-        required: true
-        example: 1
-        type: integer
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        custom: []
     cleanUrlParameters:
-      timetable_id: 16
-      timetable: 1
+      timetable_id: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
@@ -424,25 +402,14 @@ endpoints:
         name: timetable_id
         description: 'The ID of the timetable.'
         required: true
-        example: 16
+        example: 1
         type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
-      timetable:
-        name: timetable
-        description: 'ID del horario a eliminar.'
-        required: true
-        example: 1
-        type: integer
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        custom: []
     cleanUrlParameters:
-      timetable_id: 16
-      timetable: 1
+      timetable_id: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

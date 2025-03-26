@@ -29,16 +29,6 @@ endpoints:
     urlParameters:
       timetable_id:
         name: timetable_id
-        description: 'The ID of the timetable.'
-        required: true
-        example: 16
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      timetable:
-        name: timetable
         description: 'ID del horario cuyas actividades se desean listar.'
         required: true
         example: 1
@@ -48,8 +38,7 @@ endpoints:
         nullable: false
         custom: []
     cleanUrlParameters:
-      timetable_id: 16
-      timetable: 1
+      timetable_id: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -125,34 +114,23 @@ endpoints:
         name: timetable_id
         description: 'The ID of the timetable.'
         required: true
-        example: 16
+        example: 1
         type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
-      timetable:
-        name: timetable
-        description: 'ID del horario al que se le agregará la actividad.'
-        required: true
-        example: 1
-        type: integer
-        enumValues: []
-        exampleWasSpecified: true
-        nullable: false
-        custom: []
     cleanUrlParameters:
-      timetable_id: 16
-      timetable: 1
+      timetable_id: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
       day:
         name: day
-        description: 'Día de la semana en formato ISO (ej. Monday, Tuesday).'
+        description: 'Día de la semana del 1 al 7, siendo 1 el lunes.'
         required: true
-        example: Monday
-        type: string
+        example: 1
+        type: integer
         enumValues: []
         exampleWasSpecified: true
         nullable: false
@@ -198,7 +176,7 @@ endpoints:
         nullable: false
         custom: []
     cleanBodyParameters:
-      day: Monday
+      day: 1
       start_time: '08:00'
       duration: 60
       info: 'Clase de Matemáticas'
@@ -273,26 +251,6 @@ endpoints:
     urlParameters:
       timetable_id:
         name: timetable_id
-        description: 'The ID of the timetable.'
-        required: true
-        example: 16
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      activity_id:
-        name: activity_id
-        description: 'The ID of the activity.'
-        required: true
-        example: 16
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      timetable:
-        name: timetable
         description: 'ID del horario al que pertenece la actividad.'
         required: true
         example: 1
@@ -301,8 +259,8 @@ endpoints:
         exampleWasSpecified: true
         nullable: false
         custom: []
-      activity:
-        name: activity
+      activity_id:
+        name: activity_id
         description: 'ID de la actividad que se desea consultar.'
         required: true
         example: 3
@@ -312,10 +270,8 @@ endpoints:
         nullable: false
         custom: []
     cleanUrlParameters:
-      timetable_id: 16
-      activity_id: 16
-      timetable: 1
-      activity: 3
+      timetable_id: 1
+      activity_id: 3
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -397,26 +353,6 @@ endpoints:
     urlParameters:
       timetable_id:
         name: timetable_id
-        description: 'The ID of the timetable.'
-        required: true
-        example: 16
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      activity_id:
-        name: activity_id
-        description: 'The ID of the activity.'
-        required: true
-        example: 16
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      timetable:
-        name: timetable
         description: 'ID del horario al que pertenece la actividad.'
         required: true
         example: 1
@@ -425,8 +361,8 @@ endpoints:
         exampleWasSpecified: true
         nullable: false
         custom: []
-      activity:
-        name: activity
+      activity_id:
+        name: activity_id
         description: 'ID de la actividad a modificar.'
         required: true
         example: 4
@@ -436,19 +372,17 @@ endpoints:
         nullable: false
         custom: []
     cleanUrlParameters:
-      timetable_id: 16
-      activity_id: 16
-      timetable: 1
-      activity: 4
+      timetable_id: 1
+      activity_id: 4
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
       day:
         name: day
-        description: 'Día de la semana.'
+        description: 'Día de la semana del 1 al 7, 1 para lunes.'
         required: false
-        example: Wednesday
-        type: string
+        example: 1
+        type: integer
         enumValues: []
         exampleWasSpecified: true
         nullable: false
@@ -494,7 +428,7 @@ endpoints:
         nullable: false
         custom: []
     cleanBodyParameters:
-      day: Wednesday
+      day: 1
       start_time: '10:30'
       duration: 90
       info: 'Tutoría personalizada'
@@ -576,26 +510,6 @@ endpoints:
     urlParameters:
       timetable_id:
         name: timetable_id
-        description: 'The ID of the timetable.'
-        required: true
-        example: 16
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      activity_id:
-        name: activity_id
-        description: 'The ID of the activity.'
-        required: true
-        example: 16
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      timetable:
-        name: timetable
         description: 'ID del horario al que pertenece la actividad.'
         required: true
         example: 1
@@ -604,8 +518,8 @@ endpoints:
         exampleWasSpecified: true
         nullable: false
         custom: []
-      activity:
-        name: activity
+      activity_id:
+        name: activity_id
         description: 'ID de la actividad a eliminar.'
         required: true
         example: 4
@@ -615,10 +529,8 @@ endpoints:
         nullable: false
         custom: []
     cleanUrlParameters:
-      timetable_id: 16
-      activity_id: 16
-      timetable: 1
-      activity: 4
+      timetable_id: 1
+      activity_id: 4
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

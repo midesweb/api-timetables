@@ -25,7 +25,7 @@ class ListActivitiesController extends Controller
      *
      * @authenticated
      *
-     * @urlParam timetable int required ID del horario cuyas actividades se desean listar. Example: 1
+     * @urlParam timetable_id int required ID del horario cuyas actividades se desean listar. Example: 1
      *
      * @response 200 {
      *   "message": "Actividades encontradas",

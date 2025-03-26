@@ -25,8 +25,6 @@ class UpdateTimetableController extends Controller
      *
      * @authenticated
      *
-     * @urlParam timetable int required ID del horario que se desea actualizar. Example: 1
-     *
      * @bodyParam name string required Nombre del horario (máx. 50 caracteres). Example: Tarde
      * @bodyParam description string Descripción del horario (máx. 300 caracteres). Puede ser nulo. Example: Turno de tarde de 14 a 18
      *

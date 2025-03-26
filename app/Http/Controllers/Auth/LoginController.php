@@ -24,6 +24,8 @@ class LoginController extends Controller
     /**
      * Iniciar sesión
      *
+     * @unauthenticated
+     * 
      * @bodyParam email string required Correo electrónico del usuario. Example: juan@example.com
      * @bodyParam password string required Contraseña del usuario. Example: secret123
      *

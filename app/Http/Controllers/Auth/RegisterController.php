@@ -22,6 +22,8 @@ class RegisterController extends Controller
     /**
      * Registrar un nuevo usuario
      *
+     * @unauthenticated
+     *
      * @bodyParam name string required Nombre del usuario. Example: Juan Pérez
      * @bodyParam email string required Correo electrónico único. Example: juan@example.com
      * @bodyParam password string required Mínimo 8 caracteres. Debe incluir confirmation. Example: secret123

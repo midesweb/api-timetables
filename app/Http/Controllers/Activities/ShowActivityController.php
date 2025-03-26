@@ -26,8 +26,8 @@ class ShowActivityController extends Controller
      *
      * @authenticated
      *
-     * @urlParam timetable int required ID del horario al que pertenece la actividad. Example: 1
-     * @urlParam activity int required ID de la actividad que se desea consultar. Example: 3
+     * @urlParam timetable_id int required ID del horario al que pertenece la actividad. Example: 1
+     * @urlParam activity_id int required ID de la actividad que se desea consultar. Example: 3
      *
      * @response 200 {
      *   "message": "Actividad encontrada",

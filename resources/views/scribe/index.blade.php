@@ -26,7 +26,7 @@
             </style>
 
     <script>
-        var tryItOutBaseUrl = "http://localhost";
+        var tryItOutBaseUrl = "http://example.com";
         var useCsrf = Boolean();
         var csrfUrl = "/sanctum/csrf-cookie";
     </script>
@@ -147,12 +147,10 @@
     <div class="content">
         <h1 id="introduction">Introduction</h1>
 <aside>
-    <strong>Base URL</strong>: <code>http://localhost</code>
+    <strong>Base URL</strong>: <code>http://example.com</code>
 </aside>
-<pre><code>This documentation aims to provide all the information you need to work with our API.
-
-&lt;aside&gt;As you scroll, you'll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile).
-You can switch the language used with the tabs at the top right (or from the nav menu at the top left on mobile).&lt;/aside&gt;</code></pre>
+<pre><code>Esta es la documentación del
+API de la creación de horarios.</code></pre>
 
         <h1 id="authenticating-requests">Authenticating requests</h1>
 <p>To authenticate requests, include a <strong><code>Authorization</code></strong> header with the value <strong><code>"{YOUR_AUTH_KEY}"</code></strong>.</p>
@@ -178,7 +176,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/timetables/16/activities" \
+    --get "http://example.com/api/timetables/1/activities" \
     --header "Authorization: {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -186,7 +184,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/timetables/16/activities"
+    "http://example.com/api/timetables/1/activities"
 );
 
 const headers = {
@@ -325,17 +323,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="timetable_id"                data-endpoint="GETapi-timetables--timetable_id--activities"
-               value="16"
-               data-component="url">
-    <br>
-<p>The ID of the timetable. Example: <code>16</code></p>
-            </div>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>timetable</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="timetable"                data-endpoint="GETapi-timetables--timetable_id--activities"
                value="1"
                data-component="url">
     <br>
@@ -357,12 +344,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/timetables/16/activities" \
+    "http://example.com/api/timetables/1/activities" \
     --header "Authorization: {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"day\": \"Monday\",
+    \"day\": 1,
     \"start_time\": \"08:00\",
     \"duration\": 60,
     \"info\": \"Clase de Matemáticas\",
@@ -373,7 +360,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/timetables/16/activities"
+    "http://example.com/api/timetables/1/activities"
 );
 
 const headers = {
@@ -383,7 +370,7 @@ const headers = {
 };
 
 let body = {
-    "day": "Monday",
+    "day": 1,
     "start_time": "08:00",
     "duration": 60,
     "info": "Clase de Matemáticas",
@@ -526,33 +513,22 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="timetable_id"                data-endpoint="POSTapi-timetables--timetable_id--activities"
-               value="16"
-               data-component="url">
-    <br>
-<p>The ID of the timetable. Example: <code>16</code></p>
-            </div>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>timetable</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="timetable"                data-endpoint="POSTapi-timetables--timetable_id--activities"
                value="1"
                data-component="url">
     <br>
-<p>ID del horario al que se le agregará la actividad. Example: <code>1</code></p>
+<p>The ID of the timetable. Example: <code>1</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>day</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
+<small>integer</small>&nbsp;
  &nbsp;
-                <input type="text" style="display: none"
-                              name="day"                data-endpoint="POSTapi-timetables--timetable_id--activities"
-               value="Monday"
+                <input type="number" style="display: none"
+               step="any"               name="day"                data-endpoint="POSTapi-timetables--timetable_id--activities"
+               value="1"
                data-component="body">
     <br>
-<p>Día de la semana en formato ISO (ej. Monday, Tuesday). Example: <code>Monday</code></p>
+<p>Día de la semana del 1 al 7, siendo 1 el lunes. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>start_time</code></b>&nbsp;&nbsp;
@@ -624,7 +600,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/timetables/16/activities/16" \
+    --get "http://example.com/api/timetables/1/activities/3" \
     --header "Authorization: {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -632,7 +608,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/timetables/16/activities/16"
+    "http://example.com/api/timetables/1/activities/3"
 );
 
 const headers = {
@@ -779,10 +755,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="timetable_id"                data-endpoint="GETapi-timetables--timetable_id--activities--activity_id-"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the timetable. Example: <code>16</code></p>
+<p>ID del horario al que pertenece la actividad. Example: <code>1</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>activity_id</code></b>&nbsp;&nbsp;
@@ -790,28 +766,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="activity_id"                data-endpoint="GETapi-timetables--timetable_id--activities--activity_id-"
-               value="16"
-               data-component="url">
-    <br>
-<p>The ID of the activity. Example: <code>16</code></p>
-            </div>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>timetable</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="timetable"                data-endpoint="GETapi-timetables--timetable_id--activities--activity_id-"
-               value="1"
-               data-component="url">
-    <br>
-<p>ID del horario al que pertenece la actividad. Example: <code>1</code></p>
-            </div>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>activity</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="activity"                data-endpoint="GETapi-timetables--timetable_id--activities--activity_id-"
                value="3"
                data-component="url">
     <br>
@@ -833,12 +787,12 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost/api/timetables/16/activities/16" \
+    "http://example.com/api/timetables/1/activities/4" \
     --header "Authorization: {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"day\": \"Wednesday\",
+    \"day\": 1,
     \"start_time\": \"10:30\",
     \"duration\": 90,
     \"info\": \"Tutoría personalizada\",
@@ -849,7 +803,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/timetables/16/activities/16"
+    "http://example.com/api/timetables/1/activities/4"
 );
 
 const headers = {
@@ -859,7 +813,7 @@ const headers = {
 };
 
 let body = {
-    "day": "Wednesday",
+    "day": 1,
     "start_time": "10:30",
     "duration": 90,
     "info": "Tutoría personalizada",
@@ -1007,10 +961,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="timetable_id"                data-endpoint="PUTapi-timetables--timetable_id--activities--activity_id-"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the timetable. Example: <code>16</code></p>
+<p>ID del horario al que pertenece la actividad. Example: <code>1</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>activity_id</code></b>&nbsp;&nbsp;
@@ -1018,28 +972,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="activity_id"                data-endpoint="PUTapi-timetables--timetable_id--activities--activity_id-"
-               value="16"
-               data-component="url">
-    <br>
-<p>The ID of the activity. Example: <code>16</code></p>
-            </div>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>timetable</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="timetable"                data-endpoint="PUTapi-timetables--timetable_id--activities--activity_id-"
-               value="1"
-               data-component="url">
-    <br>
-<p>ID del horario al que pertenece la actividad. Example: <code>1</code></p>
-            </div>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>activity</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="activity"                data-endpoint="PUTapi-timetables--timetable_id--activities--activity_id-"
                value="4"
                data-component="url">
     <br>
@@ -1048,14 +980,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>day</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
+<small>integer</small>&nbsp;
 <i>optional</i> &nbsp;
-                <input type="text" style="display: none"
-                              name="day"                data-endpoint="PUTapi-timetables--timetable_id--activities--activity_id-"
-               value="Wednesday"
+                <input type="number" style="display: none"
+               step="any"               name="day"                data-endpoint="PUTapi-timetables--timetable_id--activities--activity_id-"
+               value="1"
                data-component="body">
     <br>
-<p>Día de la semana. Example: <code>Wednesday</code></p>
+<p>Día de la semana del 1 al 7, 1 para lunes. Example: <code>1</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>start_time</code></b>&nbsp;&nbsp;
@@ -1127,7 +1059,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/api/timetables/16/activities/16" \
+    "http://example.com/api/timetables/1/activities/4" \
     --header "Authorization: {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -1135,7 +1067,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/timetables/16/activities/16"
+    "http://example.com/api/timetables/1/activities/4"
 );
 
 const headers = {
@@ -1270,10 +1202,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="timetable_id"                data-endpoint="DELETEapi-timetables--timetable_id--activities--activity_id-"
-               value="16"
+               value="1"
                data-component="url">
     <br>
-<p>The ID of the timetable. Example: <code>16</code></p>
+<p>ID del horario al que pertenece la actividad. Example: <code>1</code></p>
             </div>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>activity_id</code></b>&nbsp;&nbsp;
@@ -1281,28 +1213,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="activity_id"                data-endpoint="DELETEapi-timetables--timetable_id--activities--activity_id-"
-               value="16"
-               data-component="url">
-    <br>
-<p>The ID of the activity. Example: <code>16</code></p>
-            </div>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>timetable</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="timetable"                data-endpoint="DELETEapi-timetables--timetable_id--activities--activity_id-"
-               value="1"
-               data-component="url">
-    <br>
-<p>ID del horario al que pertenece la actividad. Example: <code>1</code></p>
-            </div>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>activity</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="activity"                data-endpoint="DELETEapi-timetables--timetable_id--activities--activity_id-"
                value="4"
                data-component="url">
     <br>
@@ -1319,7 +1229,6 @@ Devuelve el usuario creado junto con un token de autenticación.</p>
                                 <h2 id="autenticacion-POSTapi-register">Registrar un nuevo usuario</h2>
 
 <p>
-<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -1330,8 +1239,7 @@ Devuelve el usuario creado junto con un token de autenticación.</p>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/register" \
-    --header "Authorization: {YOUR_AUTH_KEY}" \
+    "http://example.com/api/register" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -1345,11 +1253,10 @@ Devuelve el usuario creado junto con un token de autenticación.</p>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/register"
+    "http://example.com/api/register"
 );
 
 const headers = {
-    "Authorization": "{YOUR_AUTH_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -1421,7 +1328,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-register" data-method="POST"
       data-path="api/register"
-      data-authed="1"
+      data-authed="0"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
@@ -1451,17 +1358,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <b><code>api/register</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-register"
-               value="{YOUR_AUTH_KEY}"
-               data-component="header">
-    <br>
-<p>Example: <code>{YOUR_AUTH_KEY}</code></p>
-            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -1534,7 +1430,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <h2 id="autenticacion-POSTapi-login">Iniciar sesión</h2>
 
 <p>
-<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -1545,8 +1440,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/login" \
-    --header "Authorization: {YOUR_AUTH_KEY}" \
+    "http://example.com/api/login" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
@@ -1558,11 +1452,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/login"
+    "http://example.com/api/login"
 );
 
 const headers = {
-    "Authorization": "{YOUR_AUTH_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -1632,7 +1525,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 </span>
 <form id="form-POSTapi-login" data-method="POST"
       data-path="api/login"
-      data-authed="1"
+      data-authed="0"
       data-hasfiles="0"
       data-isarraybody="0"
       autocomplete="off"
@@ -1662,17 +1555,6 @@ You can check the Dev Tools console for debugging information.</code></pre>
             <b><code>api/login</code></b>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
-                                <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
-&nbsp;
- &nbsp;
-                <input type="text" style="display: none"
-                              name="Authorization" class="auth-value"               data-endpoint="POSTapi-login"
-               value="{YOUR_AUTH_KEY}"
-               data-component="header">
-    <br>
-<p>Example: <code>{YOUR_AUTH_KEY}</code></p>
-            </div>
                                 <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
@@ -1734,7 +1616,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/user" \
+    --get "http://example.com/api/user" \
     --header "Authorization: {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -1742,7 +1624,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/user"
+    "http://example.com/api/user"
 );
 
 const headers = {
@@ -1872,7 +1754,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/logout" \
+    "http://example.com/api/logout" \
     --header "Authorization: {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -1880,7 +1762,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/logout"
+    "http://example.com/api/logout"
 );
 
 const headers = {
@@ -2009,7 +1891,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/timetables" \
+    --get "http://example.com/api/timetables" \
     --header "Authorization: {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -2017,7 +1899,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/timetables"
+    "http://example.com/api/timetables"
 );
 
 const headers = {
@@ -2158,7 +2040,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/timetables/16" \
+    --get "http://example.com/api/timetables/1" \
     --header "Authorization: {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -2166,7 +2048,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/timetables/16"
+    "http://example.com/api/timetables/1"
 );
 
 const headers = {
@@ -2316,21 +2198,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="timetable_id"                data-endpoint="GETapi-timetables--timetable_id-"
-               value="16"
-               data-component="url">
-    <br>
-<p>The ID of the timetable. Example: <code>16</code></p>
-            </div>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>timetable</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="timetable"                data-endpoint="GETapi-timetables--timetable_id-"
                value="1"
                data-component="url">
     <br>
-<p>ID del horario que se desea consultar. Example: <code>1</code></p>
+<p>The ID of the timetable. Example: <code>1</code></p>
             </div>
                     </form>
 
@@ -2348,7 +2219,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/timetables" \
+    "http://example.com/api/timetables" \
     --header "Authorization: {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -2361,7 +2232,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/timetables"
+    "http://example.com/api/timetables"
 );
 
 const headers = {
@@ -2548,7 +2419,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost/api/timetables/16" \
+    "http://example.com/api/timetables/1" \
     --header "Authorization: {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
@@ -2561,7 +2432,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/timetables/16"
+    "http://example.com/api/timetables/1"
 );
 
 const headers = {
@@ -2713,21 +2584,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="timetable_id"                data-endpoint="PUTapi-timetables--timetable_id-"
-               value="16"
-               data-component="url">
-    <br>
-<p>The ID of the timetable. Example: <code>16</code></p>
-            </div>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>timetable</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="timetable"                data-endpoint="PUTapi-timetables--timetable_id-"
                value="1"
                data-component="url">
     <br>
-<p>ID del horario que se desea actualizar. Example: <code>1</code></p>
+<p>The ID of the timetable. Example: <code>1</code></p>
             </div>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <div style=" padding-left: 28px;  clear: unset;">
@@ -2768,7 +2628,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/api/timetables/16" \
+    "http://example.com/api/timetables/1" \
     --header "Authorization: {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -2776,7 +2636,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/timetables/16"
+    "http://example.com/api/timetables/1"
 );
 
 const headers = {
@@ -2911,21 +2771,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="timetable_id"                data-endpoint="DELETEapi-timetables--timetable_id-"
-               value="16"
-               data-component="url">
-    <br>
-<p>The ID of the timetable. Example: <code>16</code></p>
-            </div>
-                    <div style="padding-left: 28px; clear: unset;">
-                <b style="line-height: 2;"><code>timetable</code></b>&nbsp;&nbsp;
-<small>integer</small>&nbsp;
- &nbsp;
-                <input type="number" style="display: none"
-               step="any"               name="timetable"                data-endpoint="DELETEapi-timetables--timetable_id-"
                value="1"
                data-component="url">
     <br>
-<p>ID del horario a eliminar. Example: <code>1</code></p>
+<p>The ID of the timetable. Example: <code>1</code></p>
             </div>
                     </form>
 

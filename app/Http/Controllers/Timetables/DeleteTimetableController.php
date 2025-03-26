@@ -25,8 +25,6 @@ class DeleteTimetableController extends Controller
      *
      * @authenticated
      *
-     * @urlParam timetable int required ID del horario a eliminar. Example: 1
-     *
      * @response 200 {
      *   "message": "Horario eliminado correctamente",
      *   "data": []

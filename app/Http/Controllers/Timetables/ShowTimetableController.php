@@ -25,8 +25,6 @@ class ShowTimetableController extends Controller
      *
      * @authenticated
      *
-     * @urlParam timetable int required ID del horario que se desea consultar. Example: 1
-     *
      * @response 200 {
      *   "message": "Horario obtenido correctamente",
      *   "data": {
