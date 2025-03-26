@@ -17,6 +17,8 @@ class ShowTimetableController extends Controller
             return $this->sendError('No tienes permiso para ver este horario', [], 403);
         }
 
+        $timetable->load('activities');
+
         return $this->sendSuccess('Horario obtenido correctamente', $timetable);
     }
 }

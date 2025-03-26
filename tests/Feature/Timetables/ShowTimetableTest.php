@@ -60,4 +60,43 @@ class ShowTimetableTest extends TestCase
         $response->assertUnauthorized();
     }
 
+    #[Test]
+    public function timetable_response_includes_activities()
+    {
+        $user = User::factory()->create();
+
+        $timetable = Timetable::factory()->for($user)->create([
+            'name' => 'Horario con actividades',
+        ]);
+
+        $activities = \App\Models\Activity::factory()
+            ->count(2)
+            ->for($timetable)
+            ->create([
+                'is_available' => true,
+            ]);
+
+        $response = $this->actingAs($user)->getJson("/api/timetables/{$timetable->id}");
+
+        $response->assertOk();
+        $response->assertJson([
+            'message' => 'Horario obtenido correctamente',
+            'data' => [
+                'id' => $timetable->id,
+                'activities' => [
+                    [
+                        'timetable_id' => $timetable->id,
+                        'is_available' => true,
+                    ],
+                    [
+                        'timetable_id' => $timetable->id,
+                        'is_available' => true,
+                    ],
+                ],
+            ],
+        ]);
+
+        $this->assertCount(2, $response->json('data.activities'));
+    }
+
 }
