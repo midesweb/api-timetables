@@ -1,0 +1,646 @@
+name: Actividades
+description: |-
+
+  Listar actividades
+
+  Este endpoint devuelve todas las actividades de un horario específico, si el usuario tiene permisos para verlo.
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: 'api/timetables/{timetable_id}/activities'
+    metadata:
+      groupName: Actividades
+      groupDescription: |-
+
+        Listar actividades
+
+        Este endpoint devuelve todas las actividades de un horario específico, si el usuario tiene permisos para verlo.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Obtener lista de actividades de un horario'
+      description: 'Requiere autenticación con token Bearer.'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      timetable_id:
+        name: timetable_id
+        description: 'The ID of the timetable.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      timetable:
+        name: timetable
+        description: 'ID del horario cuyas actividades se desean listar.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      timetable_id: 16
+      timetable: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "message": "Actividades encontradas",
+            "data": {
+              "activities": [
+                {
+                  "id": 1,
+                  "day": "Monday",
+                  "start_time": "08:00",
+                  "duration": 60,
+                  "info": "Clase de Matemáticas",
+                  "is_available": true,
+                  "timetable_id": 1,
+                  "created_at": "2025-03-26T12:00:00.000000Z",
+                  "updated_at": "2025-03-26T12:00:00.000000Z"
+                }
+              ]
+            }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 403
+        content: |-
+          {
+            "message": "No tienes permiso para ver este horario",
+            "errors": []
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/timetables/{timetable_id}/activities'
+    metadata:
+      groupName: Actividades
+      groupDescription: |-
+
+        Crear actividad
+
+        Este endpoint permite registrar una nueva actividad dentro de un horario específico.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Crear nueva actividad en un horario'
+      description: 'Requiere autenticación con token Bearer.'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      timetable_id:
+        name: timetable_id
+        description: 'The ID of the timetable.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      timetable:
+        name: timetable
+        description: 'ID del horario al que se le agregará la actividad.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      timetable_id: 16
+      timetable: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      day:
+        name: day
+        description: 'Día de la semana en formato ISO (ej. Monday, Tuesday).'
+        required: true
+        example: Monday
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      start_time:
+        name: start_time
+        description: 'Hora de inicio en formato HH:MM (24h).'
+        required: true
+        example: '08:00'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      duration:
+        name: duration
+        description: 'Duración en minutos.'
+        required: true
+        example: 60
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      info:
+        name: info
+        description: 'Información o descripción de la actividad.'
+        required: true
+        example: 'Clase de Matemáticas'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      is_available:
+        name: is_available
+        description: 'Indica si la actividad está disponible. Por defecto es true.'
+        required: false
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      day: Monday
+      start_time: '08:00'
+      duration: 60
+      info: 'Clase de Matemáticas'
+      is_available: true
+    fileParameters: []
+    responses:
+      -
+        status: 201
+        content: |-
+          {
+            "message": "Actividad creada correctamente",
+            "data": {
+              "activity": {
+                "id": 1,
+                "timetable_id": 1,
+                "day": "Monday",
+                "start_time": "08:00",
+                "duration": 60,
+                "info": "Clase de Matemáticas",
+                "is_available": true,
+                "created_at": "2025-03-26T12:00:00.000000Z",
+                "updated_at": "2025-03-26T12:00:00.000000Z"
+              }
+            }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 422
+        content: |-
+          {
+            "message": "The given data was invalid.",
+            "errors": {
+              "day": ["The day field is required."],
+              "start_time": ["The start time must be a valid time."]
+            }
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/timetables/{timetable_id}/activities/{activity_id}'
+    metadata:
+      groupName: Actividades
+      groupDescription: |-
+
+        Ver una actividad
+
+        Este endpoint devuelve los detalles de una actividad específica dentro de un horario, si el usuario tiene permisos.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Obtener una actividad por ID'
+      description: 'Requiere autenticación con token Bearer.'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      timetable_id:
+        name: timetable_id
+        description: 'The ID of the timetable.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      activity_id:
+        name: activity_id
+        description: 'The ID of the activity.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      timetable:
+        name: timetable
+        description: 'ID del horario al que pertenece la actividad.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      activity:
+        name: activity
+        description: 'ID de la actividad que se desea consultar.'
+        required: true
+        example: 3
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      timetable_id: 16
+      activity_id: 16
+      timetable: 1
+      activity: 3
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "message": "Actividad encontrada",
+            "data": {
+              "activity": {
+                "id": 3,
+                "day": "Tuesday",
+                "start_time": "10:00",
+                "duration": 90,
+                "info": "Laboratorio de Física",
+                "is_available": true,
+                "timetable_id": 1,
+                "created_at": "2025-03-26T12:00:00.000000Z",
+                "updated_at": "2025-03-26T12:00:00.000000Z"
+              }
+            }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 403
+        content: |-
+          {
+            "message": "No tienes permiso para ver esta actividad",
+            "errors": []
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 404
+        content: |-
+          {
+            "message": "La actividad no pertenece a este horario",
+            "errors": []
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/timetables/{timetable_id}/activities/{activity_id}'
+    metadata:
+      groupName: Actividades
+      groupDescription: |-
+
+        Actualizar actividad
+
+        Este endpoint permite modificar una actividad específica dentro de un horario.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Actualizar una actividad'
+      description: 'Requiere autenticación con token Bearer.'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      timetable_id:
+        name: timetable_id
+        description: 'The ID of the timetable.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      activity_id:
+        name: activity_id
+        description: 'The ID of the activity.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      timetable:
+        name: timetable
+        description: 'ID del horario al que pertenece la actividad.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      activity:
+        name: activity
+        description: 'ID de la actividad a modificar.'
+        required: true
+        example: 4
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      timetable_id: 16
+      activity_id: 16
+      timetable: 1
+      activity: 4
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      day:
+        name: day
+        description: 'Día de la semana.'
+        required: false
+        example: Wednesday
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      start_time:
+        name: start_time
+        description: 'Hora de inicio (formato 24h).'
+        required: false
+        example: '10:30'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      duration:
+        name: duration
+        description: 'Duración en minutos.'
+        required: false
+        example: 90
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      info:
+        name: info
+        description: 'Descripción o contenido de la actividad.'
+        required: false
+        example: 'Tutoría personalizada'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      is_available:
+        name: is_available
+        description: 'Disponible o no.'
+        required: false
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      day: Wednesday
+      start_time: '10:30'
+      duration: 90
+      info: 'Tutoría personalizada'
+      is_available: false
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "message": "Actividad actualizada correctamente",
+            "data": {
+              "id": 4,
+              "day": "Wednesday",
+              "start_time": "10:30",
+              "duration": 90,
+              "info": "Tutoría personalizada",
+              "is_available": false,
+              "timetable_id": 1,
+              "created_at": "2025-03-26T12:00:00.000000Z",
+              "updated_at": "2025-03-26T14:00:00.000000Z"
+            }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 404
+        content: |-
+          {
+            "message": "La actividad no pertenece a este horario",
+            "errors": []
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 422
+        content: |-
+          {
+            "message": "The given data was invalid.",
+            "errors": {
+              "start_time": ["The start time must be a valid time."]
+            }
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/timetables/{timetable_id}/activities/{activity_id}'
+    metadata:
+      groupName: Actividades
+      groupDescription: |-
+
+        Eliminar actividad
+
+        Este endpoint permite eliminar una actividad específica de un horario, siempre que el usuario tenga permisos.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Eliminar una actividad'
+      description: 'Requiere autenticación con token Bearer.'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      timetable_id:
+        name: timetable_id
+        description: 'The ID of the timetable.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      activity_id:
+        name: activity_id
+        description: 'The ID of the activity.'
+        required: true
+        example: 16
+        type: integer
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      timetable:
+        name: timetable
+        description: 'ID del horario al que pertenece la actividad.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      activity:
+        name: activity
+        description: 'ID de la actividad a eliminar.'
+        required: true
+        example: 4
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      timetable_id: 16
+      activity_id: 16
+      timetable: 1
+      activity: 4
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "message": "Actividad eliminada correctamente",
+            "data": []
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 403
+        content: |-
+          {
+            "message": "No tienes permiso para eliminar esta actividad",
+            "errors": []
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 404
+        content: |-
+          {
+            "message": "La actividad no pertenece a este horario",
+            "errors": []
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

@@ -1,18 +1,26 @@
-name: Endpoints
-description: ''
+name: Horarios
+description: |-
+
+  Listar horarios
+
+  Este endpoint devuelve todos los horarios creados por el usuario autenticado, ordenados del más reciente al más antiguo.
 endpoints:
   -
     httpMethods:
       - GET
     uri: api/timetables
     metadata:
-      groupName: Endpoints
-      groupDescription: ''
+      groupName: Horarios
+      groupDescription: |-
+
+        Listar horarios
+
+        Este endpoint devuelve todos los horarios creados por el usuario autenticado, ordenados del más reciente al más antiguo.
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
+      title: 'Obtener lista de horarios del usuario autenticado'
+      description: 'Requiere autenticación con token Bearer.'
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
@@ -26,13 +34,31 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
+        status: 200
+        content: |-
+          {
+            "message": "Lista de horarios obtenida correctamente",
+            "data": [
+              {
+                "id": 1,
+                "name": "Mañana",
+                "description": "Turno de mañana de 8 a 12",
+                "user_id": 1,
+                "created_at": "2025-03-26T12:00:00.000000Z",
+                "updated_at": "2025-03-26T12:00:00.000000Z"
+              },
+              {
+                "id": 2,
+                "name": "Tarde",
+                "description": "Turno de tarde de 14 a 18",
+                "user_id": 1,
+                "created_at": "2025-03-26T13:00:00.000000Z",
+                "updated_at": "2025-03-26T13:00:00.000000Z"
+              }
+            ]
+          }
+        headers: []
+        description: ''
         custom: []
     responseFields: []
     auth: []
@@ -45,13 +71,17 @@ endpoints:
       - GET
     uri: 'api/timetables/{timetable_id}'
     metadata:
-      groupName: Endpoints
-      groupDescription: ''
+      groupName: Horarios
+      groupDescription: |-
+
+        Ver un horario
+
+        Este endpoint devuelve los detalles de un horario específico, incluyendo sus actividades relacionadas.
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
+      title: 'Obtener un horario por ID'
+      description: 'Requiere autenticación con token Bearer.'
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
@@ -67,8 +97,19 @@ endpoints:
         exampleWasSpecified: false
         nullable: false
         custom: []
+      timetable:
+        name: timetable
+        description: 'ID del horario que se desea consultar.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
     cleanUrlParameters:
       timetable_id: 16
+      timetable: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -76,13 +117,49 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
+        status: 200
+        content: |-
+          {
+            "message": "Horario obtenido correctamente",
+            "data": {
+              "id": 1,
+              "name": "Mañana",
+              "description": "Turno de mañana de 8 a 12",
+              "user_id": 1,
+              "created_at": "2025-03-26T12:00:00.000000Z",
+              "updated_at": "2025-03-26T12:00:00.000000Z",
+              "activities": [
+                {
+                  "id": 10,
+                  "name": "Matemáticas",
+                  "start_time": "08:00",
+                  "end_time": "09:00"
+                }
+              ]
+            }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 403
+        content: |-
+          {
+            "message": "No tienes permiso para ver este horario",
+            "errors": []
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 404
+        content: |-
+          {
+            "message": "No encontrado",
+            "errors": []
+          }
+        headers: []
+        description: ''
         custom: []
     responseFields: []
     auth: []
@@ -95,13 +172,17 @@ endpoints:
       - POST
     uri: api/timetables
     metadata:
-      groupName: Endpoints
-      groupDescription: ''
+      groupName: Horarios
+      groupDescription: |-
+
+        Crear horario
+
+        Este endpoint permite crear un nuevo horario (timetable) asociado al usuario autenticado.
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
+      title: 'Crear nuevo horario'
+      description: 'Requiere autenticación con token Bearer.'
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
@@ -113,29 +194,69 @@ endpoints:
     bodyParameters:
       name:
         name: name
-        description: 'Must not be greater than 50 characters.'
+        description: 'Nombre del horario (máximo 50 caracteres).'
         required: true
-        example: b
+        example: Mañana
         type: string
         enumValues: []
-        exampleWasSpecified: false
+        exampleWasSpecified: true
         nullable: false
         custom: []
       description:
         name: description
-        description: 'Must not be greater than 300 characters.'
+        description: 'Descripción del horario (máximo 300 caracteres).'
         required: true
-        example: 'Et animi quos velit et fugiat.'
+        example: 'Turno de mañana de 8 a 12'
         type: string
         enumValues: []
-        exampleWasSpecified: false
+        exampleWasSpecified: true
         nullable: false
         custom: []
     cleanBodyParameters:
-      name: b
-      description: 'Et animi quos velit et fugiat.'
+      name: Mañana
+      description: 'Turno de mañana de 8 a 12'
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 201
+        content: |-
+          {
+            "message": "Horario creado correctamente",
+            "data": {
+              "id": 1,
+              "name": "Mañana",
+              "description": "Turno de mañana de 8 a 12",
+              "user_id": 1,
+              "created_at": "2025-03-26T12:00:00.000000Z",
+              "updated_at": "2025-03-26T12:00:00.000000Z"
+            }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 403
+        content: |-
+          {
+            "message": "No tienes permiso para crear horarios",
+            "errors": []
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 422
+        content: |-
+          {
+            "message": "The given data was invalid.",
+            "errors": {
+              "name": ["The name field is required."],
+              "description": ["The description field is required."]
+            }
+          }
+        headers: []
+        description: ''
+        custom: []
     responseFields: []
     auth: []
     controller: null
@@ -147,13 +268,17 @@ endpoints:
       - PUT
     uri: 'api/timetables/{timetable_id}'
     metadata:
-      groupName: Endpoints
-      groupDescription: ''
+      groupName: Horarios
+      groupDescription: |-
+
+        Actualizar horario
+
+        Este endpoint permite modificar un horario existente si el usuario autenticado tiene permisos.
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
+      title: 'Actualizar un horario'
+      description: 'Requiere autenticación con token Bearer.'
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
@@ -169,36 +294,86 @@ endpoints:
         exampleWasSpecified: false
         nullable: false
         custom: []
+      timetable:
+        name: timetable
+        description: 'ID del horario que se desea actualizar.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
     cleanUrlParameters:
       timetable_id: 16
+      timetable: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters:
       name:
         name: name
-        description: 'Must not be greater than 50 characters.'
+        description: 'Nombre del horario (máx. 50 caracteres).'
         required: true
-        example: b
+        example: Tarde
         type: string
         enumValues: []
-        exampleWasSpecified: false
+        exampleWasSpecified: true
         nullable: false
         custom: []
       description:
         name: description
-        description: 'Must not be greater than 300 characters.'
+        description: 'Descripción del horario (máx. 300 caracteres). Puede ser nulo.'
         required: false
-        example: 'Et animi quos velit et fugiat.'
+        example: 'Turno de tarde de 14 a 18'
         type: string
         enumValues: []
-        exampleWasSpecified: false
+        exampleWasSpecified: true
         nullable: true
         custom: []
     cleanBodyParameters:
-      name: b
-      description: 'Et animi quos velit et fugiat.'
+      name: Tarde
+      description: 'Turno de tarde de 14 a 18'
     fileParameters: []
-    responses: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "message": "Horario actualizado correctamente",
+            "data": {
+              "id": 1,
+              "name": "Tarde",
+              "description": "Turno de tarde de 14 a 18",
+              "user_id": 1,
+              "created_at": "2025-03-26T12:00:00.000000Z",
+              "updated_at": "2025-03-26T13:00:00.000000Z"
+            }
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 403
+        content: |-
+          {
+            "message": "No tienes permiso para modificar este horario",
+            "errors": []
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 422
+        content: |-
+          {
+            "message": "The given data was invalid.",
+            "errors": {
+              "name": ["The name field is required."]
+            }
+          }
+        headers: []
+        description: ''
+        custom: []
     responseFields: []
     auth: []
     controller: null
@@ -210,13 +385,17 @@ endpoints:
       - DELETE
     uri: 'api/timetables/{timetable_id}'
     metadata:
-      groupName: Endpoints
-      groupDescription: ''
+      groupName: Horarios
+      groupDescription: |-
+
+        Eliminar horario
+
+        Este endpoint permite eliminar un horario existente, si el usuario tiene permisos para ello.
       subgroup: ''
       subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
+      title: 'Eliminar un horario'
+      description: 'Requiere autenticación con token Bearer.'
+      authenticated: true
       custom: []
     headers:
       Content-Type: application/json
@@ -232,49 +411,19 @@ endpoints:
         exampleWasSpecified: false
         nullable: false
         custom: []
-    cleanUrlParameters:
-      timetable_id: 16
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: 'api/timetables/{timetable_id}/activities'
-    metadata:
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      timetable_id:
-        name: timetable_id
-        description: 'The ID of the timetable.'
+      timetable:
+        name: timetable
+        description: 'ID del horario a eliminar.'
         required: true
-        example: 16
+        example: 1
         type: integer
         enumValues: []
-        exampleWasSpecified: false
+        exampleWasSpecified: true
         nullable: false
         custom: []
     cleanUrlParameters:
       timetable_id: 16
+      timetable: 1
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -282,330 +431,35 @@ endpoints:
     fileParameters: []
     responses:
       -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - POST
-    uri: 'api/timetables/{timetable_id}/activities'
-    metadata:
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      timetable_id:
-        name: timetable_id
-        description: 'The ID of the timetable.'
-        required: true
-        example: 16
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-    cleanUrlParameters:
-      timetable_id: 16
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      day:
-        name: day
-        description: 'Must be between 1 and 7.'
-        required: true
-        example: 2
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      start_time:
-        name: start_time
-        description: 'Must be a valid date in the format <code>H:i</code>.'
-        required: true
-        example: '16:24'
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      duration:
-        name: duration
-        description: 'Must be at least 1.'
-        required: true
-        example: 22
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      info:
-        name: info
+        status: 200
+        content: |-
+          {
+            "message": "Horario eliminado correctamente",
+            "data": []
+          }
+        headers: []
         description: ''
-        required: true
-        example: architecto
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
         custom: []
-      is_available:
-        name: is_available
-        description: ''
-        required: false
-        example: true
-        type: boolean
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-    cleanBodyParameters:
-      day: 2
-      start_time: '16:24'
-      duration: 22
-      info: architecto
-      is_available: true
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - GET
-    uri: 'api/timetables/{timetable_id}/activities/{activity_id}'
-    metadata:
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      timetable_id:
-        name: timetable_id
-        description: 'The ID of the timetable.'
-        required: true
-        example: 16
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      activity_id:
-        name: activity_id
-        description: 'The ID of the activity.'
-        required: true
-        example: 16
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-    cleanUrlParameters:
-      timetable_id: 16
-      activity_id: 16
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses:
       -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
-        custom: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - PUT
-    uri: 'api/timetables/{timetable_id}/activities/{activity_id}'
-    metadata:
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      timetable_id:
-        name: timetable_id
-        description: 'The ID of the timetable.'
-        required: true
-        example: 16
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      activity_id:
-        name: activity_id
-        description: 'The ID of the activity.'
-        required: true
-        example: 16
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-    cleanUrlParameters:
-      timetable_id: 16
-      activity_id: 16
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters:
-      day:
-        name: day
-        description: 'Must be between 1 and 7.'
-        required: true
-        example: 2
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      start_time:
-        name: start_time
-        description: 'Must be a valid date in the format <code>H:i</code>.'
-        required: true
-        example: '16:24'
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      duration:
-        name: duration
-        description: 'Must be at least 1.'
-        required: true
-        example: 22
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      info:
-        name: info
+        status: 403
+        content: |-
+          {
+            "message": "No tienes permiso para eliminar este horario",
+            "errors": []
+          }
+        headers: []
         description: ''
-        required: true
-        example: architecto
-        type: string
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
         custom: []
-      is_available:
-        name: is_available
+      -
+        status: 404
+        content: |-
+          {
+            "message": "No encontrado",
+            "errors": []
+          }
+        headers: []
         description: ''
-        required: false
-        example: true
-        type: boolean
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
         custom: []
-    cleanBodyParameters:
-      day: 2
-      start_time: '16:24'
-      duration: 22
-      info: architecto
-      is_available: true
-    fileParameters: []
-    responses: []
-    responseFields: []
-    auth: []
-    controller: null
-    method: null
-    route: null
-    custom: []
-  -
-    httpMethods:
-      - DELETE
-    uri: 'api/timetables/{timetable_id}/activities/{activity_id}'
-    metadata:
-      groupName: Endpoints
-      groupDescription: ''
-      subgroup: ''
-      subgroupDescription: ''
-      title: ''
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      timetable_id:
-        name: timetable_id
-        description: 'The ID of the timetable.'
-        required: true
-        example: 16
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-      activity_id:
-        name: activity_id
-        description: 'The ID of the activity.'
-        required: true
-        example: 16
-        type: integer
-        enumValues: []
-        exampleWasSpecified: false
-        nullable: false
-        custom: []
-    cleanUrlParameters:
-      timetable_id: 16
-      activity_id: 16
-    queryParameters: []
-    cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
-    fileParameters: []
-    responses: []
     responseFields: []
     auth: []
     controller: null
