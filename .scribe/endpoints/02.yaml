@@ -23,6 +23,7 @@ endpoints:
       authenticated: true
       custom: []
     headers:
+      Authorization: '{YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
@@ -90,7 +91,10 @@ endpoints:
         description: ''
         custom: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 1|MamQIVVD8SLC0gYvjPXd5oBATwfXQL1eDTDeuPBW438393b6'
     controller: null
     method: null
     route: null
@@ -113,6 +117,7 @@ endpoints:
       authenticated: true
       custom: []
     headers:
+      Authorization: '{YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
@@ -236,7 +241,10 @@ endpoints:
         description: ''
         custom: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 1|MamQIVVD8SLC0gYvjPXd5oBATwfXQL1eDTDeuPBW438393b6'
     controller: null
     method: null
     route: null
@@ -259,6 +267,7 @@ endpoints:
       authenticated: true
       custom: []
     headers:
+      Authorization: '{YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
@@ -356,7 +365,10 @@ endpoints:
         description: ''
         custom: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 1|MamQIVVD8SLC0gYvjPXd5oBATwfXQL1eDTDeuPBW438393b6'
     controller: null
     method: null
     route: null
@@ -379,6 +391,7 @@ endpoints:
       authenticated: true
       custom: []
     headers:
+      Authorization: '{YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
@@ -531,7 +544,10 @@ endpoints:
         description: ''
         custom: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 1|MamQIVVD8SLC0gYvjPXd5oBATwfXQL1eDTDeuPBW438393b6'
     controller: null
     method: null
     route: null
@@ -554,6 +570,7 @@ endpoints:
       authenticated: true
       custom: []
     headers:
+      Authorization: '{YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
@@ -639,7 +656,10 @@ endpoints:
         description: ''
         custom: []
     responseFields: []
-    auth: []
+    auth:
+      - headers
+      - Authorization
+      - 'Bearer 1|MamQIVVD8SLC0gYvjPXd5oBATwfXQL1eDTDeuPBW438393b6'
     controller: null
     method: null
     route: null
