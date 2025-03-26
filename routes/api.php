@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\GetUserController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Activities\ShowActivityController;
 use App\Http\Controllers\Timetables\ShowTimetableController;
 use App\Http\Controllers\Activities\CreateActivityController;
 use App\Http\Controllers\Timetables\ListTimetablesController;
@@ -30,3 +31,4 @@ Route::prefix('timetables')->middleware('auth:sanctum')->group(function () {
 });
 
 Route::middleware('auth:sanctum')->post('/activities', CreateActivityController::class);
+Route::middleware('auth:sanctum')->get('/activities/{id}', ShowActivityController::class);

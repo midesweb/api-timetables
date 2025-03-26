@@ -19,6 +19,10 @@ class Activity extends Model
         'is_available',
     ];
 
+    protected $casts = [
+        'is_available' => 'boolean',
+    ];
+
     public function timetable() : BelongsTo
     {
         return $this->belongsTo(Timetable::class);

@@ -26,4 +26,13 @@ class ActivityFactory extends Factory
             'is_available' => $this->faker->boolean(80), // 80% de probabilidad de estar disponible
         ];
     }
+
+    public function forUser($user): static
+    {
+        return $this->for(
+            \App\Models\Timetable::factory()->for($user),
+            'timetable'
+        );
+    }
+
 }
