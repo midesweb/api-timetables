@@ -5,12 +5,12 @@
             "key": "baseUrl",
             "type": "string",
             "name": "string",
-            "value": "http:\/\/api-timetables.escuelait.com"
+            "value": "http:\/\/localhost"
         }
     ],
     "info": {
         "name": "Laravel API Documentation",
-        "_postman_id": "3efd5105-0c01-4759-be9a-e00a1e4c2966",
+        "_postman_id": "ae801de2-23f7-4c89-8e43-d8a77af9229d",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },

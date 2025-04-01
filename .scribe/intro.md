@@ -3,7 +3,7 @@
 
 
 <aside>
-    <strong>Base URL</strong>: <code>http://api-timetables.escuelait.com</code>
+    <strong>Base URL</strong>: <code>http://localhost</code>
 </aside>
 
     Esta es la documentación del
