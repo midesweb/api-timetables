@@ -1,4 +1,7 @@
 <?php
+if (!class_exists(\Knuckles\Scribe\Config\Defaults::class)) {
+    return [];
+}
 
 use Knuckles\Scribe\Extracting\Strategies;
 use Knuckles\Scribe\Config\Defaults;
